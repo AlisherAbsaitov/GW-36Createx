@@ -1,0 +1,113 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "title": "The Ultimate Google Ads Training Course",
+      "category": "Marketing",
+      "price": 100,
+      "author": "Jerome Bell",
+      "img": "https://randomuser.me/api/portraits/men/32.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Prduct Management Fundamentals",
+      "category": "Management",
+      "price": 480,
+      "author": "Marvin McKinney",
+      "img": "https://randomuser.me/api/portraits/men/45.jpg"
+    },
+    {
+      "id": 3,
+      "title": "HR  Management and Analytics",
+      "category": "HR & Recruting",
+      "price": 200,
+      "author": "Leslie Alexander Li",
+      "img": "https://randomuser.me/api/portraits/men/76.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Brand Management & PR Communications",
+      "category": "Marketing",
+      "price": 530,
+      "author": "Kristin Watson",
+      "img": "https://randomuser.me/api/portraits/women/65.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Graphic Design Basic",
+      "category": "Design",
+      "price": 500,
+      "author": "Guy Hawkins",
+      "img": "https://randomuser.me/api/portraits/men/22.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Business Development Management",
+      "category": "Management",
+      "price": 400,
+      "author": "Dianne Russell",
+      "img": "https://randomuser.me/api/portraits/women/44.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Highload Software Architecture",
+      "category": "Development",
+      "price": 600,
+      "author": "Brooklyn Simmons",
+      "img": "https://randomuser.me/api/portraits/men/85.jpg"
+    },
+    {
+      "id": 8,
+      "title": "Human Resources – Selection and Recruitment",
+      "category": "HR & Recruting",
+      "price": 150,
+      "author": "Kathryn Murphy",
+      "img": "https://randomuser.me/api/portraits/women/68.jpg"
+    },
+    {
+      "id": 9,
+      "title": "User Experience. Human-centered Design",
+      "category": "Design",
+      "price": 240,
+      "author": "Cody Fisher",
+      "img": "https://randomuser.me/api/portraits/men/52.jpg"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "quote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Justo, amet lectus quam viverra mus lobortis fermentum amet, eu. Pulvinar eu sed purus facisili. Vitae id turpis tempus ornare turpis quis non. Congue tortor in euismod vulputate etiam eros. Pulvinar neque pharetra arcu diam maecenas diam integer in.",
+      "name": "Eleanor Pena",
+      "role": "Position, Course",
+      "img": "https://randomuser.me/api/portraits/women/44.jpg"
+    },
+    {
+      "id": 2,
+      "quote": "The course structure was clear and the instructor explained every concept with real examples. I finished feeling confident enough to apply what I learned immediately at work.",
+      "name": "Jenny Wilson",
+      "role": "Marketing Manager, Google Ads Training",
+      "img": "https://randomuser.me/api/portraits/women/68.jpg"
+    },
+    {
+      "id": 3,
+      "quote": "Great pacing and very practical assignments. I liked that every module ended with a project I could actually add to my portfolio.",
+      "name": "Robert Fox",
+      "role": "Product Designer, UX Design",
+      "img": "https://randomuser.me/api/portraits/men/54.jpg"
+    },
+    {
+      "id": 4,
+      "quote": "Highly recommend this platform. The support team was responsive and the community around each course kept me motivated to finish.",
+      "name": "Courtney Henry",
+      "role": "HR Specialist, HR Management",
+      "img": "https://randomuser.me/api/portraits/women/22.jpg"
+    },
+    {
+      "id": 5,
+      "quote": "Solid content, well organized, and the certificate at the end actually helped me during my next job interview.",
+      "name": "Darrell Steward",
+      "role": "Software Engineer, Highload Architecture",
+      "img": "https://randomuser.me/api/portraits/men/76.jpg"
+    }
+  ]
+}
