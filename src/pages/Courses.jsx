@@ -1,9 +1,7 @@
 import { useState, useMemo } from "react";
 import { Search, RotateCw, ArrowLeft, ArrowRight, Quote } from "lucide-react";
-import data from "../json/courses.json";
 
-const { courses: COURSES, testimonials: TESTIMONIALS } = data;
-
+// 1. Kategoriya stillari (Faqat bir marta e'lon qilinishi kerak)
 const CATEGORY_STYLES = {
   Marketing: "bg-emerald-500",
   Management: "bg-indigo-500",
@@ -18,14 +16,7 @@ const ACCREDITATIONS = [
   { name: "National", color: "text-emerald-600" },
 ];
 
-const CATEGORY_STYLES = {
-  Marketing: "bg-emerald-500",
-  Management: "bg-indigo-500",
-  "HR & Recruting": "bg-orange-500",
-  Design: "bg-pink-600",
-  Development: "bg-violet-600",
-};
-
+// 2. Kurslar ro'yxati (const COURSES qayta e'lon qilinishi olib tashlandi)
 const COURSES = [
   {
     id: 1,
@@ -37,7 +28,7 @@ const COURSES = [
   },
   {
     id: 2,
-    title: "Prduct Management Fundamentals",
+    title: "Product Management Fundamentals",
     category: "Management",
     price: 480,
     author: "Marvin McKinney",
@@ -45,7 +36,7 @@ const COURSES = [
   },
   {
     id: 3,
-    title: "HR  Management and Analytics",
+    title: "HR Management and Analytics",
     category: "HR & Recruting",
     price: 200,
     author: "Leslie Alexander Li",
@@ -101,6 +92,24 @@ const COURSES = [
   },
 ];
 
+// Agar TESTIMONIALS JSON fayldan kelayotgan bo'lsa, uni import qiling yoki dummy data qo'ying:
+const TESTIMONIALS = [
+  {
+    id: 1,
+    quote: "This course was absolutely incredible! It changed my career path entirely.",
+    name: "Eleanor Pena",
+    role: "Digital Marketer",
+    img: "https://randomuser.me/api/portraits/women/12.jpg"
+  },
+  {
+    id: 2,
+    quote: "Very detailed explanations and practical examples. Highly recommended!",
+    name: "Guy Hawkins",
+    role: "UI/UX Designer",
+    img: "https://randomuser.me/api/portraits/men/22.jpg"
+  }
+];
+
 const TABS = ["All", "Marketing", "Management", "HR & Recruting", "Design", "Development"];
 
 function tabCount(tab) {
@@ -114,10 +123,15 @@ export default function Courses() {
   const [visibleCount, setVisibleCount] = useState(9);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
-  const goPrev = () =>
+  const goPrev = () => {
+    if (TESTIMONIALS.length === 0) return;
     setActiveTestimonial((i) => (i === 0 ? TESTIMONIALS.length - 1 : i - 1));
-  const goNext = () =>
+  };
+  
+  const goNext = () => {
+    if (TESTIMONIALS.length === 0) return;
     setActiveTestimonial((i) => (i === TESTIMONIALS.length - 1 ? 0 : i + 1));
+  };
 
   const filtered = useMemo(() => {
     return COURSES.filter((c) => {
@@ -219,73 +233,73 @@ export default function Courses() {
       )}
 
       {/* Testimonials carousel */}
-      <section className="relative mt-24 overflow-hidden rounded-3xl bg-slate-50 px-6 py-16 md:px-16">
-        <div className="pointer-events-none absolute -left-6 top-8 h-32 w-32 rounded-full border border-slate-200" />
-        <div className="pointer-events-none absolute -left-2 top-14 h-20 w-20 rounded-full border border-slate-200" />
+      {TESTIMONIALS.length > 0 && (
+        <section className="relative mt-24 overflow-hidden rounded-3xl bg-slate-50 px-6 py-16 md:px-16">
+          <div className="pointer-events-none absolute -left-6 top-8 h-32 w-32 rounded-full border border-slate-200" />
+          <div className="pointer-events-none absolute -left-2 top-14 h-20 w-20 rounded-full border border-slate-200" />
 
-        <div className="relative text-center">
-          <p className="text-xs font-bold tracking-widest text-red-500">
-            TESTIMONIALS
-          </p>
-          <h2 className="mt-2 text-3xl font-extrabold text-slate-900 md:text-4xl">
-            What our students say
-          </h2>
-        </div>
-
-        <div className="relative mx-auto mt-10 max-w-4xl">
-          <button
-            onClick={goPrev}
-            aria-label="Previous testimonial"
-            className="absolute left-[-56px] top-1/2 hidden -translate-y-1/2 rounded-full p-2 text-slate-500 hover:text-slate-800 md:block"
-          >
-            <ArrowLeft className="h-5 w-5" />
-          </button>
-          <button
-            onClick={goNext}
-            aria-label="Next testimonial"
-            className="absolute right-[-56px] top-1/2 hidden -translate-y-1/2 rounded-full bg-red-500 p-3 text-white shadow-lg hover:bg-red-600 md:block"
-          >
-            <ArrowRight className="h-5 w-5" />
-          </button>
-
-          <div className="rounded-2xl bg-white p-8 shadow-sm md:p-12">
-            <Quote className="h-7 w-7 fill-red-500 text-red-500" />
-            <p className="mt-4 text-lg leading-relaxed text-slate-600">
-              {TESTIMONIALS[activeTestimonial].quote}
+          <div className="relative text-center">
+            <p className="text-xs font-bold tracking-widest text-red-500">
+              TESTIMONIALS
             </p>
-            <div className="mt-6 flex items-center gap-4">
-              <img
-                src={TESTIMONIALS[activeTestimonial].img}
-                alt={TESTIMONIALS[activeTestimonial].name}
-                className="h-12 w-12 rounded-full object-cover"
-              />
-              <div>
-                <p className="font-semibold text-slate-900">
-                  {TESTIMONIALS[activeTestimonial].name}
-                </p>
-                <p className="text-sm text-slate-400">
-                  {TESTIMONIALS[activeTestimonial].role}
-                </p>
+            <h2 className="mt-2 text-3xl font-extrabold text-slate-900 md:text-4xl">
+              What our students say
+            </h2>
+          </div>
+
+          <div className="relative mx-auto mt-10 max-w-4xl">
+            <button
+              onClick={goPrev}
+              aria-label="Previous testimonial"
+              className="absolute left-[-56px] top-1/2 hidden -translate-y-1/2 rounded-full p-2 text-slate-500 hover:text-slate-800 md:block"
+            >
+              <ArrowLeft className="h-5 w-5" />
+            </button>
+            <button
+              onClick={goNext}
+              aria-label="Next testimonial"
+              className="absolute right-[-56px] top-1/2 hidden -translate-y-1/2 rounded-full bg-red-500 p-3 text-white shadow-lg hover:bg-red-600 md:block"
+            >
+              <ArrowRight className="h-5 w-5" />
+            </button>
+
+            <div className="rounded-2xl bg-white p-8 shadow-sm md:p-12">
+              <Quote className="h-7 w-7 fill-red-500 text-red-500" />
+              <p className="mt-4 text-lg leading-relaxed text-slate-600">
+                {TESTIMONIALS[activeTestimonial].quote}
+              </p>
+              <div className="mt-6 flex items-center gap-4">
+                <img
+                  src={TESTIMONIALS[activeTestimonial].img}
+                  alt={TESTIMONIALS[activeTestimonial].name}
+                  className="h-12 w-12 rounded-full object-cover"
+                />
+                <div>
+                  <p className="font-semibold text-slate-900">
+                    {TESTIMONIALS[activeTestimonial].name}
+                  </p>
+                  <p className="text-sm text-slate-400">
+                    {TESTIMONIALS[activeTestimonial].role}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="mt-8 flex justify-center gap-2">
-            {TESTIMONIALS.map((t, i) => (
-              <button
-                key={t.id}
-                onClick={() => setActiveTestimonial(i)}
-                aria-label={`Go to testimonial ${i + 1}`}
-                className={`h-1.5 rounded-full transition-all ${
-                  i === activeTestimonial
-                    ? "w-8 bg-slate-800"
-                    : "w-4 bg-slate-200"
-                }`}
-              />
-            ))}
+            <div className="mt-8 flex justify-center gap-2">
+              {TESTIMONIALS.map((t, i) => (
+                <button
+                  key={t.id}
+                  onClick={() => setActiveTestimonial(i)}
+                  aria-label={`Go to testimonial ${i + 1}`}
+                  className={`h-1.5 rounded-full transition-all ${
+                    i === activeTestimonial ? "w-8 bg-slate-800" : "w-4 bg-slate-200"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Certificate section */}
       <section className="mx-auto mt-24 grid max-w-6xl grid-cols-1 items-center gap-12 md:grid-cols-2">
@@ -302,10 +316,7 @@ export default function Courses() {
           </p>
           <div className="mt-6 flex flex-wrap items-center gap-6">
             {ACCREDITATIONS.map((a) => (
-              <span
-                key={a.name}
-                className={`text-sm font-semibold ${a.color}`}
-              >
+              <span key={a.name} className={`text-sm font-semibold ${a.color}`}>
                 {a.name}
               </span>
             ))}
@@ -320,36 +331,12 @@ export default function Courses() {
               viewBox="0 0 500 320"
               preserveAspectRatio="none"
             >
-              <path
-                d="M0 0 L120 0 C90 40 60 90 0 100 Z"
-                fill="#60A5FA"
-                opacity="0.5"
-              />
-              <path
-                d="M0 0 L160 0 C120 50 70 60 30 130 C10 60 5 20 0 0 Z"
-                fill="#FBBF24"
-                opacity="0.6"
-              />
-              <path
-                d="M500 0 L500 90 C460 60 430 30 420 0 Z"
-                fill="#FB7185"
-                opacity="0.15"
-              />
-              <path
-                d="M500 220 C460 240 440 280 500 320 L500 220 Z"
-                fill="#FBBF24"
-                opacity="0.7"
-              />
-              <path
-                d="M500 260 C450 250 430 300 470 320 L500 320 Z"
-                fill="#60A5FA"
-                opacity="0.5"
-              />
-              <path
-                d="M500 240 C430 230 400 280 440 320 L500 320 L500 240 Z"
-                fill="#34D399"
-                opacity="0.4"
-              />
+              <path d="M0 0 L120 0 C90 40 60 90 0 100 Z" fill="#60A5FA" opacity="0.5" />
+              <path d="M0 0 L160 0 C120 50 70 60 30 130 C10 60 5 20 0 0 Z" fill="#FBBF24" opacity="0.6" />
+              <path d="M500 0 L500 90 C460 60 430 30 420 0 Z" fill="#FB7185" opacity="0.15" />
+              <path d="M500 220 C460 240 440 280 500 320 L500 220 Z" fill="#FBBF24" opacity="0.7" />
+              <path d="M500 260 C450 250 430 300 470 320 L500 320 Z" fill="#60A5FA" opacity="0.5" />
+              <path d="M500 240 C430 230 400 280 440 320 L500 320 L500 240 Z" fill="#34D399" opacity="0.4" />
               <circle cx="150" cy="40" r="6" fill="#60A5FA" opacity="0.5" />
               <circle cx="470" cy="150" r="6" fill="#60A5FA" opacity="0.3" />
               <circle cx="250" cy="315" r="5" fill="#FBBF24" opacity="0.6" />
@@ -372,17 +359,11 @@ export default function Courses() {
               </p>
               <div className="mt-10 flex justify-center gap-16">
                 <div>
-                  <p className="font-signature text-xl italic text-slate-800">
-                    Robert
-                  </p>
-                  <p className="mt-1 text-xs text-slate-400">
-                    Robert Douglas
-                  </p>
+                  <p className="text-xl italic text-slate-800">Robert</p>
+                  <p className="mt-1 text-xs text-slate-400">Robert Douglas</p>
                 </div>
                 <div>
-                  <p className="font-signature text-xl italic text-slate-800">
-                    Adam
-                  </p>
+                  <p className="text-xl italic text-slate-800">Adam</p>
                   <p className="mt-1 text-xs text-slate-400">Adam Harold</p>
                 </div>
               </div>
